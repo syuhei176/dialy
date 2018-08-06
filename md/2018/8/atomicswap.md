@@ -63,6 +63,7 @@ Initiateの際には、以下のパラメータを渡します。
 
 - Party BのChain Aでのアドレス(participant address)を指定します。
 - hashedSecretを渡します。
+- refundTimeを指定します。
 
 # Reference
 
