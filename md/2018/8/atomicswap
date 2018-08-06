@@ -1,0 +1,60 @@
+# はじめに
+
+Atomic Swapについてです。
+
+https://github.com/decred/atomicswap
+
+Atomic Swapは異なるブロックチェーンで暗号通貨を交換する方法です。
+具体的な手順を簡単に調べたので、記録として残します。
+
+
+# 手順
+
+Atomic Swapは二つのチェーンで以下のステップで実現できます。ETHのようなスマートコントラクトを実行できるチェーンでは、以下をsmart contractで実現できます。
+
+暗号通貨を交換する人は `Initiator` と `Participant` という役割に分かれます。
+
+smartc contractには以下の４つの操作が必要です。
+
+- Initiate: Initiatorがatomic swapに参加する
+- Participate: ParticipantがAtomic swapに参加する
+- redeem
+- refund: 
+
+### データ構造
+
+```
+struct Swap {
+  uint initTimestamp;
+  uint refundTime;
+  bytes20 hashedSecret;
+  bytes32 secret;
+  address initiator;
+  address participant;
+  uint256 value;
+  bool emptied;
+  State state;
+}
+```
+
+### refund
+
+Initiator側のcontractであればInitiatorに送金し、Participator側のcontractであればParticipatorに送金します。
+つまりdepositした資金を元に戻します。
+redundを行うには、hashedSecretがあれば十分です。
+
+
+### redeem
+
+Initiator側のcontractであればParticipantに送金し、Participator側のcontractであればInitiatorに送金します。
+redeemを行うには、secretが必要です。
+
+## 
+
+# Reference
+
+シーケンス図
+https://github.com/decred/atomicswap
+
+evm contract
+https://github.com/AltCoinExchange/ethatomicswap/blob/master/contracts/AtomicSwap.sol
