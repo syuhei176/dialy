@@ -63,6 +63,28 @@ Initiateの際には、以下のパラメータを渡します。
 
 - Party BのChain Aでのアドレス(participant address)を指定します。
 - hashedSecretを渡します。
+- refundTime(refundできる期間)を指定します。
+
+この時点でPartyAはrefundはできません。指定したrefundTime以後でかつredeemされてない場合、refund可能です
+
+## Participate
+
+ParticipantはInitiatorからsecretHashを受け取ります。
+これによりChain Bのコントラクトでparticipateが可能です。
+Participateの際には、以下のパラメータを渡します。
+
+- Party AのChain Bでのアドレス(initiator address)を指定します。
+- 受け取ったhashedSecretを渡します。
+- refundTime(refundできる期間)を指定します。
+
+この時点でPartyBはrefundはできません。指定したrefundTime以後でかつredeemされてない場合、refund可能です
+
+この時点でParty AはChain Bのコントラクトのredeemが可能です。**Party BはChain AのコントラクトのrefundTimeが十分であることを事前に確認しなければいけません。**
+
+## Redeem
+
+Party AがChain Bのコントラクトでredeemするためには、Contractにsecretを渡さなければいけません。
+そしてその時点でsecretが明らかになり、Party BもChain Aでredeemすることができます。
 
 # Reference
 
