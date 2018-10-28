@@ -20,4 +20,4 @@ AliceとBobがcoinAとcoinBを交換するシナリオで、
 atomic swapのproofをwithholdした上で、BobがcoinBをinvalid historyでexitするケース。
 
 atomic swapにconfsigが必要にすれば、Aliceは少なくともtxとsignは持っている。
-それらでforce includeすると、coinAとcoinBのexitが、atomic swapのproofなどが公開されるまで、cancelされる。
+それらで"force include"すると、atomic swapのproofなどが公開されるか、入力がspentされることが証明されない限り、coinAとcoinBのexitがcancelされる。
